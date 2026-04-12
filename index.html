@@ -6,8 +6,10 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 		/>
+
 		<title>Vekvy</title>
 
+		<link rel="icon" type="image/svg+xml" href="src/assets/favicon.svg" />
 		<link rel="stylesheet" href="src/assets/css/style.css" />
 
 		<script>
@@ -28,6 +30,12 @@
 				document.documentElement.dataset.theme = theme
 			})()
 		</script>
+
+		<style>
+			body.preload {
+				display: none !important;
+			}
+		</style>
 	</head>
 	<body class="preload">
 		<header>
@@ -85,9 +93,7 @@
 						</div>
 					</div> -->
 
-					<ul class="md-typescale-title-small">
-						<li>There's nothing here yet</li>
-					</ul>
+					<section id="projects-container"></section>
 
 					<p class="md-typescale-title-large" id="tech-stack-and-tools">
 						<md-icon class="fill">design_services</md-icon> Tech Stack & Tools
@@ -153,6 +159,18 @@
 			</form>
 			<div slot="actions">
 				<md-text-button form="form-id">Ok</md-text-button>
+			</div>
+		</md-dialog>
+
+		<md-dialog id="download-dialog">
+			<div slot="headline" id="dialog-title"></div>
+
+			<form slot="content" id="dialog-content" method="dialog"></form>
+
+			<div slot="actions">
+				<md-text-button form="dialog-content" value="close"
+					>Close</md-text-button
+				>
 			</div>
 		</md-dialog>
 	</body>

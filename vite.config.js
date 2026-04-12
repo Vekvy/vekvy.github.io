@@ -1,7 +1,10 @@
 export default {
 	build: {
-		outDir: 'docs',
+		outDir: 'dist',
 		emptyOutDir: true,
 	},
 	base: './',
+	server: {
+		host: '0.0.0.0',
+	},
 }
