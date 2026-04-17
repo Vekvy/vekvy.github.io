@@ -1,45 +1,45 @@
-import {openDownloadMenu} from './downloads.js';
+import { openDownloadMenu } from './downloads.js';
 
 export async function initProjects(indexUrl) {
-    const container = document.getElementById('projects-container');
-    if (!container) return;
+  const container = document.getElementById('projects-container');
+  if (!container) return;
 
-    try {
-        const indexResponse = await fetch(indexUrl);
-        const indexData = await indexResponse.json();
-        const projectUrls = indexData.projects || [];
+  try {
+    const indexResponse = await fetch(indexUrl);
+    const indexData = await indexResponse.json();
+    const projectUrls = indexData.projects || [];
 
-        if (projectUrls.length === 0) {
-            container.innerHTML = `
+    if (projectUrls.length === 0) {
+      container.innerHTML = `
                 <div style="opacity: 0.7;">
                     <p class="md-typescale-body-large">There's here nothing yet</p>
                 </div>
             `;
-            return;
+      return;
+    }
+
+    const projectDataArray = await Promise.all(
+      projectUrls.map(async (url) => {
+        try {
+          const res = await fetch(url);
+          const data = await res.json();
+          return { ...data, meta_url: url };
+        } catch (e) {
+          console.error(e);
+          return null;
         }
+      }),
+    );
 
-        const projectDataArray = await Promise.all(
-            projectUrls.map(async url => {
-                try {
-                    const res = await fetch(url);
-                    const data = await res.json();
-                    return {...data, meta_url: url};
-                } catch (e) {
-                    console.error(e);
-                    return null;
-                }
-            }),
-        );
+    const validProjects = projectDataArray.filter((p) => p !== null);
 
-        const validProjects = projectDataArray.filter(p => p !== null);
+    container.innerHTML = validProjects
+      .map((project) => {
+        const hasVersions = project.versions && project.versions.length > 0;
+        const hasDocs = !!project.docs_url;
+        const hasGithub = !!project.github_url;
 
-        container.innerHTML = validProjects
-            .map(project => {
-                const hasVersions = project.versions && project.versions.length > 0;
-                const hasDocs = !!project.docs_url;
-                const hasGithub = !!project.github_url;
-
-                return `
+        return `
                 <div class="project-card">
                     <div class="project-card-header">
                         <p class="md-typescale-headline-large project-card-title">
@@ -75,17 +75,19 @@ export async function initProjects(indexUrl) {
                     </div>
                 </div>
             `;
-            })
-            .join('');
+      })
+      .join('');
 
-        container.querySelectorAll('.download-btn:not([disabled])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const name = btn.getAttribute('data-name');
-                const url = btn.getAttribute('data-url');
-                openDownloadMenu(name, url);
-            });
+    container
+      .querySelectorAll('.download-btn:not([disabled])')
+      .forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const name = btn.getAttribute('data-name');
+          const url = btn.getAttribute('data-url');
+          openDownloadMenu(name, url);
         });
-    } catch (e) {
-        console.error(e);
-    }
+      });
+  } catch (e) {
+    console.error(e);
+  }
 }
