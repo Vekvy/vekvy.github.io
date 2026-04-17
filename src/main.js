@@ -9,28 +9,32 @@ import '@material/web/button/filled-tonal-button.js';
 import '@material/web/list/list-item.js';
 import '@material/web/divider/divider.js';
 import '@material/web/progress/linear-progress.js';
-import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
 
-import {initTheme} from './modules/theme.js';
-import {initProjects} from './modules/projects.js';
-import {initNavigation, initSmoothScroll, removePreload,} from './modules/ui.js';
+import { initTheme } from './modules/theme.js';
+import { initProjects } from './modules/projects.js';
+import {
+  initNavigation,
+  initSmoothScroll,
+  removePreload,
+} from './modules/ui.js';
 
 document.adoptedStyleSheets = [
-    ...document.adoptedStyleSheets,
-    typescaleStyles.styleSheet,
+  ...document.adoptedStyleSheets,
+  typescaleStyles.styleSheet,
 ];
 
 window.addEventListener('load', () => {
-    removePreload();
-    initTheme();
-    initSmoothScroll();
-    initNavigation();
-    initProjects('/repo.json');
+  removePreload();
+  initTheme();
+  initSmoothScroll();
+  initNavigation();
+  initProjects('/repo.json');
 });
 
 const openSettings = document.getElementById('open-settings');
 const settingsDialog = document.getElementById('settings-dialog');
 
 if (openSettings && settingsDialog) {
-    openSettings.addEventListener('click', () => settingsDialog.show());
+  openSettings.addEventListener('click', () => settingsDialog.show());
 }
