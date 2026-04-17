@@ -12,7 +12,7 @@ export async function initProjects(indexUrl) {
     if (projectUrls.length === 0) {
       container.innerHTML = `
                 <div style="opacity: 0.7;">
-                    <p class="md-typescale-body-large">There's here nothing yet</p>
+                    <p class="md-typescale-body-large">There is nothing here yet</p>
                 </div>
             `;
       return;
