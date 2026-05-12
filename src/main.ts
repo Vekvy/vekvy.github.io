@@ -21,7 +21,7 @@ import {
 
 document.adoptedStyleSheets = [
   ...document.adoptedStyleSheets,
-  typescaleStyles.styleSheet,
+  typescaleStyles.styleSheet as CSSStyleSheet,
 ];
 
 window.addEventListener('load', () => {
@@ -32,8 +32,12 @@ window.addEventListener('load', () => {
   initProjects('/repo.json');
 });
 
-const openSettings = document.getElementById('open-settings');
-const settingsDialog = document.getElementById('settings-dialog');
+const openSettings = document.getElementById(
+  'open-settings',
+) as HTMLElement | null;
+const settingsDialog = document.getElementById(
+  'settings-dialog',
+) as HTMLDialogElement | null;
 
 if (openSettings && settingsDialog) {
   openSettings.addEventListener('click', () => settingsDialog.show());
