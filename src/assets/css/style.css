@@ -3,26 +3,29 @@
 
 @font-face {
   font-family: GoogleSansFlexBrand;
-  src: url('../fonts/GoogleSansFlex.woff2') format('woff2-variations');
+  src: url('../fonts/GoogleSansFlex.subset.woff2') format('woff2');
   font-weight: 500;
   font-variation-settings:
     'wght' 500,
     'ROND' 100;
+  font-display: swap;
 }
 
 @font-face {
   font-family: GoogleSansFlexPlain;
-  src: url('../fonts/GoogleSansFlex.woff2') format('woff2-variations');
+  src: url('../fonts/GoogleSansFlex.subset.woff2') format('woff2');
   font-weight: 400;
   font-variation-settings:
     'wght' 400,
     'ROND' 100;
+  font-display: swap;
 }
 
 @font-face {
   font-family: MaterialSymbolsRounded;
-  src: url('../fonts/MaterialSymbolsRounded.woff2') format('woff2');
+  src: url('../fonts/MaterialSymbolsRounded.subset.woff2') format('woff2');
   font-variation-settings: 'wght' 500;
+  font-display: block;
 }
 
 :root {
@@ -46,6 +49,10 @@ body {
 
 html {
   font-family: var(--md-ref-typeface-plain), system-ui;
+  font-weight: 400;
+  font-variation-settings:
+    'wght' 400,
+    'ROND' 100;
   background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
 }
