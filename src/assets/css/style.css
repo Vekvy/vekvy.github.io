@@ -2,7 +2,7 @@
 @import url('../theme/light.css');
 
 @font-face {
-  font-family: GoogleSansFlexBrand;
+  font-family: 'Google Sans Flex Brand';
   src: url('../fonts/GoogleSansFlex.subset.woff2') format('woff2');
   font-weight: 500;
   font-variation-settings:
@@ -12,7 +12,7 @@
 }
 
 @font-face {
-  font-family: GoogleSansFlexPlain;
+  font-family: 'Google Sans Flex Plain';
   src: url('../fonts/GoogleSansFlex.subset.woff2') format('woff2');
   font-weight: 400;
   font-variation-settings:
@@ -22,16 +22,17 @@
 }
 
 @font-face {
-  font-family: MaterialSymbolsRounded;
-  src: url('../fonts/MaterialSymbolsRounded.subset.woff2') format('woff2');
+  font-family: 'Material Symbols Rounded';
+  src: url('../fonts/MaterialSymbolsRounded.subset.filled.woff2')
+    format('woff2');
   font-variation-settings: 'wght' 500;
   font-display: block;
 }
 
 :root {
-  --md-ref-typeface-brand: 'GoogleSansFlexBrand', system-ui;
-  --md-ref-typeface-plain: 'GoogleSansFlexPlain', system-ui;
-  --md-icon-font: 'MaterialSymbolsRounded';
+  --md-ref-typeface-brand: 'Google Sans Flex Brand', system-ui;
+  --md-ref-typeface-plain: 'Google Sans Flex Plain', system-ui;
+  --md-icon-font: 'Material Symbols Rounded';
 }
 
 * {
@@ -225,10 +226,6 @@ header {
   gap: 12px;
   align-self: flex-end;
   margin-top: auto;
-}
-
-md-icon.fill {
-  font-variation-settings: 'FILL' 1;
 }
 
 p md-icon {
